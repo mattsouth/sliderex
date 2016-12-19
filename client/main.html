@@ -1,0 +1,27 @@
+<head>
+  <title>sliderex</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Bootstrap-slider demo</h1>
+    <p>The input text and the slider are backed by a single reactive variable.  Changing the slider changes the text box.  Changing the text box doesnt change the slider.</p>
+    <p>{{> test}}</p>
+  </div>
+</body>
+
+<template name="test">
+  <div class="form-group">
+    <label>Text input:</label>
+    <input type="text" class="form-control" name="testvar-input" value={{ testvar }}  style="width:100px"/>
+    <button class="btn btn-default">Update</button>
+  </div>
+  <div class="form-group">
+    <label>Slider input:</label>
+    <div>
+      <input type="text" class="form-control slider" name="testvar-slider" data-slider-value={{ testvar }} />
+    </div>
+  </div>
+  <hr>
+  <h4>value: {{ testvar }}</h4>
+</template>
