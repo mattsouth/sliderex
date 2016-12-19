@@ -6,4 +6,4 @@ meteor npm install
 meteor add twbs:bootstrap
 meteor npm install --save jquery@2.1.1 bootstrap-slider
 ```
-And then editing the client/main.html and client/main.js files
+And then edited the client/main.html and client/main.js files
