@@ -8,12 +8,18 @@ import 'bootstrap-slider/dist/css/bootstrap-slider.min.css';
 import './main.html';
 
 Template.test.onCreated(function testOnCreated() {
-  this.testvar = new ReactiveVar(0);
+  this.testvar = new ReactiveVar(2);
 });
 
 Template.test.onRendered(function testOnRendered() {
-  Template.instance().$('.slider').slider();
-  // TODO: make slider reactive
+  const self = this;
+  const slider = Template.instance().$('.slider').slider();
+  self.autorun(function() {
+    let value = self.testvar.get();
+    if (slider) {
+      slider.slider('setValue', value);
+    }
+  });
 });
 
 Template.test.helpers({
@@ -25,9 +31,7 @@ Template.test.helpers({
 Template.test.events({
   'click button'(event, instance) {
     let val = parseInt($("input").val())
-    if (Number.isInteger(val) && val>=0 && val<=10) {
-      instance.testvar.set(val);
-    }
+    instance.testvar.set(val);
   },
   'slide .slider'(event, instance) {
     let val=parseInt(event.value);
